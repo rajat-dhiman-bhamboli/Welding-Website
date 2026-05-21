@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/request';
+import type { NextRequest } from 'next/server';
 import * as jose from 'jose';
 
 export async function middleware(request: NextRequest) {
@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
     }
 
     try {
-      const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+      const secret = new TextEncoder().encode(process.env.JWT_SECRET || '');
       const { payload } = await jose.jwtVerify(token, secret);
 
       if (payload.role !== 'admin') {
