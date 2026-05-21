@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-charcoal: #0A0A0B;
+  --color-brand-orange: #FF5F00;
+  --color-brand-silver: #A1A1AA;
+  --color-brand-dark: #050505;
+  --color-brand-glow: rgba(255, 95, 0, 0.4);
+  
+  --font-industrial: "Inter", sans-serif;
+}
+
+:root {
+  --background: #050505;
+  --foreground: #F4F4F5;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-industrial);
+  overflow-x: hidden;
+}
+
+/* Custom Cinematic Effects */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spark-glow {
+  box-shadow: 0 0 20px var(--color-brand-glow);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #FF5F00 0%, #FFB800 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.glow-bg {
+  background: radial-gradient(circle at center, var(--color-brand-glow) 0%, transparent 70%);
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, minmax(200px, auto));
+  gap: 1.5rem;
+}
