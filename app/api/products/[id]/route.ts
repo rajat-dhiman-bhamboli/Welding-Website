@@ -4,11 +4,11 @@ import { NextResponse } from "next/server";
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     await dbConnect();
-    const id = params.id;
+    const { id } = await context.params;
     await Product.findByIdAndDelete(id);
     return NextResponse.json({ success: true, message: "Product deleted" });
   } catch (error: any) {
